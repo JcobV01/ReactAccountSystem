@@ -1,0 +1,15 @@
+*, *::before, *::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Calibri';
+  font-size: 30px;
+}
+
+.App{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, rgb(44, 164, 0), rgb(0, 99, 12));
+}
