@@ -11,5 +11,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, rgb(44, 164, 0), rgb(0, 99, 12));
+  background: radial-gradient(circle, rgb(44, 164, 1), rgb(0, 99, 12));
 }
