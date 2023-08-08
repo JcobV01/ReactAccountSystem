@@ -9,14 +9,14 @@ class FormInput extends Component {
     }
 
     render() {
-        const { placeholder, type, value, className, icon } = this.props
+        const { placeholder, type, value, className, icon, name, change } = this.props
         const { passIcon } = this.state
 
         const changeIcon = () => passIcon === faEye ? this.setState({ passIcon: faEyeSlash }) : this.setState({ passIcon: faEye })
 
         return (
             <div className="input-group">
-                <input required type={type === 'password' && passIcon === faEye ? 'password' : 'text'} className={className} value={value}></input>
+                <input required type={type === 'password' && passIcon === faEye ? 'password' : 'text'} className={className} value={value} name={name} onChange={change}></input>
                 <span>{placeholder}</span>
                 {type === 'password' && <span className="show-password"><FontAwesomeIcon icon={passIcon} onClick={changeIcon} /></span>}
             </div>
