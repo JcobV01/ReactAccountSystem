@@ -2,7 +2,7 @@ import React from 'react'
 import './LoginForm.scss'
 import FormInput from '../FormInput/FormInput'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
@@ -17,8 +17,22 @@ const LoginForm = () => {
 
   const inputChange = event => {
     setLoginData(prev => ({...prev, [event.target.name]: [event.target.value]}))
-    console.log("zmieniono")
   }
+
+  axios.defaults.withCredentials = true;
+
+  useEffect(()=>{
+    axios.get('http://localhost:8081')
+    .then(res => {
+      if(!res.data.valid){
+        navigate('/')
+      }
+      else{
+        navigate('/home')
+      }
+    })
+    .catch(err => console.log(err))
+  })
 
   const formSubmit = async (event) =>{
     event.preventDefault()
@@ -26,7 +40,7 @@ const LoginForm = () => {
     .then(response => {
       if(response.data.Login){
         console.log(response)
-        navigate('home')
+        navigate('/home')
       }
       else{
         console.error("Nie ma takiego w bazie")
