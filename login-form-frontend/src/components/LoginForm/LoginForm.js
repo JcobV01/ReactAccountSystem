@@ -13,11 +13,15 @@ const LoginForm = () => {
     password: "",
   })
 
+  const [error, setError] = useState('')
+
   const navigate = useNavigate()
 
   const inputChange = event => {
     setLoginData(prev => ({...prev, [event.target.name]: [event.target.value]}))
   }
+
+  //if user is alredy logged in, it move user to home page
 
   axios.defaults.withCredentials = true;
 
@@ -43,7 +47,7 @@ const LoginForm = () => {
         navigate('/home')
       }
       else{
-        console.error("Nie ma takiego w bazie")
+        setError("Niepoprawne hasło lub email")
       }
       
     })
@@ -54,6 +58,7 @@ const LoginForm = () => {
     <div className='App'>
       <form className='login-form' onSubmit={formSubmit}>
         <h1>Login Form</h1>
+        <p className='loginError'>{error}</p>
         <FormInput type="text" placeholder="Email" className="login-input" name="email" change={inputChange}/>
         <FormInput type="password" placeholder="Password" icon="faEye" name="password" change={inputChange}/>
         <p><a href="#">Forgot password?</a></p>
